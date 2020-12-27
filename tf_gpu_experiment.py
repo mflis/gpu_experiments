@@ -3,7 +3,7 @@ from transformers import TFAutoModelForSequenceClassification, AutoTokenizer
 import tensorflow as tf
 
 from tensorflow.python.compiler.mlcompute import mlcompute
-mlcompute.set_mlc_device(device_name='gpu')
+mlcompute.set_mlc_device(device_name='cpu')
 
 
 def prepare_dataset(split: str):
@@ -21,7 +21,7 @@ def prepare_dataset(split: str):
     return tfdataset
 
 
-model_name = "bert-base-uncased"
+model_name = "albert-base-v2"
 model = TFAutoModelForSequenceClassification.from_pretrained(model_name)
 tfds_train_dataset = prepare_dataset('train')
 tfds_test_dataset = prepare_dataset('test')
